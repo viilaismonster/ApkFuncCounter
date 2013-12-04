@@ -34,4 +34,7 @@ apk地址     test1.apk
             
             官客命名空间是info.viila.android.test1.*表示各个模块，所以是-d 5
 
+-diff test2.apk 与之前统计过的test2版本的方法进行比较
+
 viila       过滤出包名中含有viila字样的包
+            * 过滤参数一直是最后一个 *
