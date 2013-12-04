@@ -11,7 +11,7 @@ Android Apk Function Count by package
 
 ## 使用 ##
 
-./countdex.sh test1.apk -d 5 viila
+    ./countdex.sh test1.apk -d 5 viila
 
 会进行以下步骤
 
