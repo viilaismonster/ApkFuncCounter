@@ -2,11 +2,11 @@
 
 function dumpit {
     echo -n "dump" $1
-    java -jar ./s-mali-2.0.2.jar $1 -o out/$1/classes.dex
+    java -jar ../s-mali-2.0.2.jar $1 -o $1/classes.dex
     count=`cat $1/classes.dex|head -c 92|tail -c 4|hexdump -e '1/4 "%d\n"'`
     echo " ... "$count
-    echo $1 "..." $count >> out/detail.log
-    echo $count >> out/count.log
+    echo $1" ... "$count >> detail.log
+    echo $count >> count.log
 }
 
 apk=$1
@@ -53,13 +53,17 @@ else
     command=$command"| xargs -I{} echo {}"
 
     echo $command
+    cd out
     for path in `echo $command|bash`
     do
         dumpit $path
     done
+    cd ..
     echo -n "SUM = "
     touch out/count.log
-    awk -F'\t' 'BEGIN{SUM=0}{SUM+=$1}END{print SUM}' out/count.log
-    rm -Rf $apk_out
-    mv out $apk_out
+    sum=`awk -F'\t' 'BEGIN{SUM=0}{SUM+=$1}END{print SUM}' out/count.log`
+    echo $sum
+    echo "SUM = "$sum >> out/detail.log
+    rm -Rf $apk"_out"
+    mv out $apk"_out"
 fi
