@@ -57,4 +57,5 @@ Android Apk Function Count by package
 > viila
 > 过滤出包名中含有viila字样的包
 
-* 过滤参数一直是最后一个
+过滤参数必须是最后一个
+

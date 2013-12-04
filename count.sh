@@ -16,6 +16,7 @@ function dumpit {
             cfont -yellow
             echo -n " new"
         else
+            let other=$other*1
             if [ $other -lt $count ]; then
                 cfont -red
                 let abs=$count-$other
