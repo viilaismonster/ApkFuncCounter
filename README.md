@@ -23,7 +23,7 @@ Android Apk Function Count by package
 
 ##### [APK]
 
-test1.apk   APK地址
+> test1.apk   APK地址
 
 ##### [DEPTH]
 
