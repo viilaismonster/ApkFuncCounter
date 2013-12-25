@@ -7,7 +7,7 @@ Android Apk Function Count by package
 
 1.  需要预先配置jdk环境，测试 java -version保证其可以使用
 2.  将目录下*.sh *.jar一共三个文件解压到任意文件夹（如 ~/temp）
-3.  chmod +x ./countdex.sh
+3.  chmod +x ./count.sh
 
 ## 使用 ##
 
