@@ -4,13 +4,22 @@
 # $2 diff directory
 function dumpit {
     echo -n "dump" $1
-    java -jar ../s-mali-2.0.2.jar $1 -o $1/classes.dex
-    count=`cat $1/classes.dex|head -c 92|tail -c 4|hexdump -e '1/4 "%d\n"'`
+    count=""
+    if [ -d "../$3_out/" ]; then
+        count=`cat ../$3_out/detail.log|grep $1|awk '{print $3}'`
+    fi
+    if [ "$count" == "" ]; then
+        java -jar ../s-mali-2.0.2.jar $1 -o $1/classes.dex
+        count=`cat $1/classes.dex|head -c 92|tail -c 4|hexdump -e '1/4 "%d\n"'`
+    else
+        echo -n "*"
+    fi
+
     echo -n " ... "$count
     echo $1" ... "$count >> detail.log
     echo $count >> count.log
 
-    if [ "$2" != "" ]; then
+    if [ "$2" != "./" ]; then
         other=`cat ../$2_out/detail.log|grep $1|awk '{print $3}'`
         if [ "$other" == "" ]; then
             cfont -yellow
@@ -93,7 +102,7 @@ else
     echo $command
     for path in `echo $command|bash`
     do
-        dumpit $path $diff
+        dumpit $path "./"$diff $apk
     done
     cd ..
     echo "current version "$apk
