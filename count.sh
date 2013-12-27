@@ -5,8 +5,8 @@
 function dumpit {
     echo -n "dump" $1
     count=""
-    if [ -d "../$3_out/" ]; then
-        count=`cat ../$3_out/detail.log|grep $1|awk '{print $3}'`
+    if [ -d "../$3_out/" -a "$2" != "./" ]; then
+        count=`cat ../$3_out/detail.log|grep "$1 "|awk '{print $3}'`
     fi
     if [ "$count" == "" ]; then
         java -jar ../s-mali-2.0.2.jar $1 -o $1/classes.dex
@@ -20,7 +20,7 @@ function dumpit {
     echo $count >> count.log
 
     if [ "$2" != "./" ]; then
-        other=`cat ../$2_out/detail.log|grep $1|awk '{print $3}'`
+        other=`cat ../$2_out/detail.log|grep "$1 "|awk '{print $3}'`
         if [ "$other" == "" ]; then
             cfont -yellow
             echo -n " new"
