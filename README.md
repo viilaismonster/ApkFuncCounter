@@ -3,6 +3,8 @@ ApkFuncCounter
 
 Android Apk Function Count by package
 
+[related](https://github.com/viilaismonster/LinearAllocFix)
+
 ## 安装 ##
 
 1.  需要预先配置jdk环境，测试 java -version保证其可以使用
